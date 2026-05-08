@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select City - Urban Seasonal Intelligence System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter smooth-scroll">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0f]">
+        <div class="stars"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="max-w-2xl w-full">
+            <!-- Back Button -->
+            <a href="index.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors mb-8">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to Home
+            </a>
+
+            <!-- Selection Card -->
+            <div class="glass-card p-8 md:p-12">
+                <h1 class="text-3xl md:text-4xl font-space font-bold mb-3 text-white">
+                    Configure Your <span class="gradient-text">Analysis</span>
+                </h1>
+                <p class="text-gray-400 mb-8">
+                    Select a city and analysis parameters to view seasonal intelligence data
+                </p>
+
+                <form id="selectionForm" class="space-y-6">
+                    <!-- City Selection -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">
+                            Select Metro City
+                        </label>
+                        <div class="custom-select">
+                            <select id="citySelect" required class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors">
+                                <option value="">Choose a city...</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="bangalore">Bangalore</option>
+                                <option value="hyderabad">Hyderabad</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="kolkata">Kolkata</option>
+                                <option value="pune">Pune</option>
+                                <option value="ahmedabad">Ahmedabad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Season Selection -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">
+                            Season
+                        </label>
+                        <div id="seasonCardsContainer" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <!-- Season cards will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Analysis Type -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">
+                            Analysis Type
+                        </label>
+                        <div class="space-y-3">
+                            <label class="analysis-option">
+                                <input type="checkbox" name="analysis" value="aqi" class="hidden">
+                                <div class="analysis-card">
+                                    <div class="flex items-center gap-3">
+                                        <div class="analysis-icon">
+                                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-white">Air Quality Index</div>
+                                            <div class="text-sm text-gray-400">Pollution and air quality metrics</div>
+                                        </div>
+                                    </div>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                            </label>
+                            <label class="analysis-option">
+                                <input type="checkbox" name="analysis" value="heat" class="hidden">
+                                <div class="analysis-card">
+                                    <div class="flex items-center gap-3">
+                                        <div class="analysis-icon">
+                                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-white">Heat Stress Analysis</div>
+                                            <div class="text-sm text-gray-400">Temperature and heat island mapping</div>
+                                        </div>
+                                    </div>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                            </label>
+                            <label class="analysis-option">
+                                <input type="checkbox" name="analysis" value="traffic" class="hidden">
+                                <div class="analysis-card">
+                                    <div class="flex items-center gap-3">
+                                        <div class="analysis-icon">
+                                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-white">Traffic Patterns</div>
+                                            <div class="text-sm text-gray-400">Congestion and mobility analysis</div>
+                                        </div>
+                                    </div>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                            </label>
+                            <label class="analysis-option">
+                                <input type="checkbox" name="analysis" value="flood" class="hidden">
+                                <div class="analysis-card">
+                                    <div class="flex items-center gap-3">
+                                        <div class="analysis-icon">
+                                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-white">Flood Risk Assessment</div>
+                                            <div class="text-sm text-gray-400">Vulnerability and risk zones</div>
+                                        </div>
+                                    </div>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full cta-button justify-center mt-8">
+                        Generate Analysis
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="select.js"></script>
+</body>
+</html>

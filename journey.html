@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - Urban Seasonal Intelligence System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter smooth-scroll">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0f]">
+        <div class="stars"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="max-w-2xl w-full">
+            <!-- Back Button -->
+            <a href="index.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors mb-8">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to Home
+            </a>
+
+            <!-- Journey Planning Card -->
+            <div class="glass-card p-8 md:p-12">
+                <h1 class="text-3xl md:text-4xl font-space font-bold mb-3 text-white">
+                    Plan Your <span class="gradient-text">Journey</span>
+                </h1>
+                <p class="text-gray-400 mb-8">
+                    Get real-time environmental and traffic insights for your destination
+                </p>
+
+                <form id="journeyForm" class="space-y-6">
+                    <!-- Start Location -->
+                    <div class="location-input-container">
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">
+                            Starting Point
+                        </label>
+                        <input 
+                            type="text" 
+                            id="startLocation" 
+                            placeholder="e.g., Banashankari, Bangalore"
+                            required
+                            class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                        >
+                        <div id="startSuggestions" class="location-suggestions hidden"></div>
+                    </div>
+
+                    <!-- End Location -->
+                    <div class="location-input-container">
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">
+                            Destination
+                        </label>
+                        <input 
+                            type="text" 
+                            id="endLocation" 
+                            placeholder="e.g., Whitefield, Bangalore"
+                            required
+                            class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                        >
+                        <div id="endSuggestions" class="location-suggestions hidden"></div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full cta-button justify-center mt-8">
+                        Analyze Journey
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="journey.js"></script>
+</body>
+</html>
