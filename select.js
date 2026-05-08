@@ -13,6 +13,139 @@ function getCurrentSeason() {
     }
 }
 
+// City coordinates for geolocation matching
+const cityCoordinates = {
+    'mumbai': { lat: 19.0760, lng: 72.8777, radius: 50 },
+    'delhi': { lat: 28.7041, lng: 77.1025, radius: 50 },
+    'bangalore': { lat: 12.9716, lng: 77.5946, radius: 50 },
+    'hyderabad': { lat: 17.3850, lng: 78.4867, radius: 50 },
+    'chennai': { lat: 13.0827, lng: 80.2707, radius: 50 },
+    'kolkata': { lat: 22.5726, lng: 88.3639, radius: 50 },
+    'pune': { lat: 18.5204, lng: 73.8567, radius: 50 },
+    'ahmedabad': { lat: 23.0225, lng: 72.5714, radius: 50 }
+};
+
+// Calculate distance between two coordinates
+function calculateDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371; // Earth's radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLng/2) * Math.sin(dLng/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+}
+
+// Find nearest city based on user coordinates
+function findNearestCity(userLat, userLng) {
+    let nearestCity = null;
+    let minDistance = Infinity;
+    
+    for (const [city, coords] of Object.entries(cityCoordinates)) {
+        const distance = calculateDistance(userLat, userLng, coords.lat, coords.lng);
+        
+        // If within city radius, return immediately
+        if (distance <= coords.radius) {
+            return city;
+        }
+        
+        // Track nearest city
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestCity = city;
+        }
+    }
+    
+    return nearestCity;
+}
+
+// Request user location and auto-select city
+function requestLocationPermission() {
+    if (!navigator.geolocation) {
+        console.log('Geolocation not supported');
+        return;
+    }
+    
+    // Show loading indicator
+    const citySelect = document.getElementById('citySelect');
+    const originalHTML = citySelect.innerHTML;
+    citySelect.innerHTML = '<option value="">Detecting location...</option>';
+    citySelect.disabled = true;
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+            
+            // Find nearest city
+            const nearestCity = findNearestCity(userLat, userLng);
+            
+            // Restore dropdown
+            citySelect.innerHTML = originalHTML;
+            citySelect.disabled = false;
+            
+            if (nearestCity) {
+                citySelect.value = nearestCity;
+                
+                // Show notification
+                showLocationNotification(`Location detected: ${nearestCity.charAt(0).toUpperCase() + nearestCity.slice(1)}`);
+            }
+        },
+        (error) => {
+            console.log('Location permission denied or error:', error);
+            
+            // Restore dropdown
+            citySelect.innerHTML = originalHTML;
+            citySelect.disabled = false;
+            
+            // Show notification
+            if (error.code === error.PERMISSION_DENIED) {
+                showLocationNotification('Location permission denied. Please select city manually.', 'warning');
+            }
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+    );
+}
+
+// Show location notification
+function showLocationNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 24px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #10b981, #059669)' : 'linear-gradient(135deg, #f59e0b, #f97316)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        font-weight: 600;
+        animation: slideIn 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    `;
+    notification.innerHTML = `
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 4000);
+}
+
 // Season data with icons
 const seasons = {
     summer: {
@@ -106,6 +239,11 @@ function renderSeasonCards() {
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
     renderSeasonCards();
+    
+    // Request location permission after a short delay
+    setTimeout(() => {
+        requestLocationPermission();
+    }, 500);
 });
 
 // Handle form submission

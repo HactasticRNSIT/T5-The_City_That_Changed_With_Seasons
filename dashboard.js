@@ -1,5 +1,5 @@
 // Configuration
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 const WEATHER_API_KEY = '9c6f0f4e8a7b4d3c2e1f0a9b8c7d6e5f'; // OpenWeatherMap API key (you'll need to get one)
 
 // Load user selections

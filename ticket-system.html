@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket System - Urban Seasonal Intelligence System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter smooth-scroll">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0f]">
+        <div class="stars"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-gray-400 hover:text-purple-400 transition-colors">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <div>
+                    <h1 class="text-xl font-space font-bold text-white">Support Ticket System</h1>
+                    <p class="text-sm text-gray-400">Report issues or track your tickets</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 px-6 pb-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Action Selection -->
+            <div class="glass-card p-8 mb-6">
+                <h2 class="text-2xl font-space font-bold text-white mb-6">What would you like to do?</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <button id="showReportForm" class="action-card">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <h3>Report an Issue</h3>
+                        <p>Submit a new support ticket</p>
+                    </button>
+                    <button id="showTrackForm" class="action-card">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                        <h3>Track Ticket</h3>
+                        <p>Check your ticket status</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Report Form -->
+            <div id="reportFormSection" class="glass-card p-8 hidden">
+                <h2 class="text-2xl font-space font-bold text-white mb-6">Report an Issue</h2>
+                <form id="reportForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Issue Category</label>
+                        <select id="issueCategory" required class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500">
+                            <option value="">Select a category...</option>
+                            <option value="road-damage">Road Damage / Potholes</option>
+                            <option value="traffic-signal">Traffic Signal Malfunction</option>
+                            <option value="street-light">Street Light Issue</option>
+                            <option value="drainage">Drainage / Flooding</option>
+                            <option value="pollution">Air/Noise Pollution</option>
+                            <option value="waste-management">Waste Management</option>
+                            <option value="public-transport">Public Transport Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div id="customCategoryDiv" class="hidden">
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Specify Issue</label>
+                        <input type="text" id="customCategory" class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500" placeholder="Enter issue type">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Location</label>
+                        <input type="text" id="issueLocation" required class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500" placeholder="e.g., MG Road, Bangalore">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Description</label>
+                        <textarea id="issueDescription" required rows="4" class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500" placeholder="Describe the issue in detail..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Attach Screenshots (Optional)</label>
+                        <input type="file" id="issueAttachments" multiple accept="image/*" class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500">
+                        <p class="text-xs text-gray-500 mt-2">You can attach multiple images</p>
+                    </div>
+
+                    <button type="submit" class="w-full submit-report-btn">
+                        Submit Ticket
+                    </button>
+                </form>
+            </div>
+
+            <!-- Track Form -->
+            <div id="trackFormSection" class="glass-card p-8 hidden">
+                <h2 class="text-2xl font-space font-bold text-white mb-6">Track Your Ticket</h2>
+                <form id="trackForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">Ticket ID</label>
+                        <input type="text" id="ticketIdInput" required class="w-full bg-[#0f0f19] border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500" placeholder="e.g., USIS-2024-001">
+                    </div>
+                    <button type="submit" class="w-full submit-report-btn">
+                        Track Ticket
+                    </button>
+                </form>
+            </div>
+
+            <!-- Ticket Status Display -->
+            <div id="ticketStatusSection" class="hidden"></div>
+        </div>
+    </main>
+
+    <script src="ticket-system.js"></script>
+</body>
+</html>
