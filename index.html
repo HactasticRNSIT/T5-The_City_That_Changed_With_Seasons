@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Seasonal Intelligence System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter smooth-scroll">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0f]">
+        <div class="stars"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#logo-gradient)" class="logo-bg"/>
+                        <circle cx="16" cy="12" r="2" fill="white" opacity="0.9" class="pulse-dot"/>
+                        <circle cx="16" cy="20" r="2" fill="white" opacity="0.7" class="pulse-dot" style="animation-delay: 0.3s"/>
+                        <path d="M16 12 L16 20" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M10 16 L22 16" stroke="white" stroke-width="1.5" opacity="0.5"/>
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#7c3aed"/>
+                                <stop offset="100%" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="text-xl font-space font-bold gradient-text">USIS</span>
+            </div>
+            
+            <button id="themeToggle" class="theme-toggle">
+                <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon hidden" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-5xl mx-auto text-center fade-in">
+            <div class="inline-block mb-6">
+                <span class="badge">AI-Powered Urban Intelligence</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-space font-bold mb-6 leading-tight">
+                Urban Seasonal<br/>
+                <span class="gradient-text">Intelligence System</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto font-light">
+                Harnessing AI and environmental data to analyze seasonal impacts across urban landscapes—from pollution patterns to infrastructure vulnerability.
+            </p>
+            <button class="cta-button">
+                Explore Platform
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass-card p-12 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-space font-bold mb-6 text-center text-white">
+                    Intelligence Beyond <span class="gradient-text">Seasons</span>
+                </h2>
+                <p class="text-lg text-gray-400 leading-relaxed text-center max-w-4xl mx-auto">
+                    The Urban Seasonal Intelligence System combines advanced AI algorithms with comprehensive urban and environmental datasets to provide deep insights into how seasonal changes affect different city zones. Our platform analyzes pollution levels, weather patterns, traffic dynamics, heat stress indicators, flooding risks, and infrastructure vulnerabilities—delivering actionable intelligence for smarter urban planning and management.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-space font-bold mb-16 text-center text-white">
+                Core <span class="gradient-text">Capabilities</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.1s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">AQI Monitoring</h3>
+                    <p class="text-gray-400">
+                        Real-time air quality index tracking across urban zones with seasonal pattern analysis and predictive modeling.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">Weather Analysis</h3>
+                    <p class="text-gray-400">
+                        Advanced meteorological data processing to understand micro-climate variations and seasonal weather impacts.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.3s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">Seasonal Heatmaps</h3>
+                    <p class="text-gray-400">
+                        Interactive geospatial visualizations showing temperature distributions, heat islands, and thermal stress zones.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">AI Insights</h3>
+                    <p class="text-gray-400">
+                        Machine learning models that identify patterns, predict trends, and generate actionable urban intelligence.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.5s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">Vulnerability Detection</h3>
+                    <p class="text-gray-400">
+                        Identify infrastructure weaknesses, flooding risks, and areas susceptible to seasonal environmental stress.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card fade-in-up" style="animation-delay: 0.6s">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-space font-semibold mb-3 text-white">Traffic Dynamics</h3>
+                    <p class="text-gray-400">
+                        Analyze how seasonal changes affect traffic patterns, congestion points, and urban mobility networks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Preview Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-space font-bold mb-16 text-center text-white">
+                Data <span class="gradient-text">Visualizations</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Chart Preview 1 -->
+                <div class="glass-card p-6 fade-in-up">
+                    <h3 class="text-lg font-space font-semibold mb-4 text-white">Seasonal AQI Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="aqiChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Heatmap Preview -->
+                <div class="glass-card p-6 fade-in-up" style="animation-delay: 0.1s">
+                    <h3 class="text-lg font-space font-semibold mb-4 text-white">Urban Heat Distribution</h3>
+                    <div class="heatmap-container">
+                        <canvas id="heatmapCanvas"></canvas>
+                        <div class="heatmap-legend">
+                            <span class="text-xs text-gray-400">15°C</span>
+                            <div class="legend-gradient"></div>
+                            <span class="text-xs text-gray-400">42°C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Preview 2 -->
+                <div class="glass-card p-6 fade-in-up" style="animation-delay: 0.2s">
+                    <h3 class="text-lg font-space font-semibold mb-4 text-white">Traffic Flow Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Metrics Card -->
+                <div class="glass-card p-6 fade-in-up" style="animation-delay: 0.3s">
+                    <h3 class="text-lg font-space font-semibold mb-4 text-white">Real-Time Metrics</h3>
+                    <div class="space-y-4">
+                        <div class="metric-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-400">Air Quality Index</span>
+                                <span class="text-sm font-semibold gradient-text">Good (45)</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-400">Heat Stress Level</span>
+                                <span class="text-sm font-semibold gradient-text">Moderate (62%)</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 62%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-400">Flood Risk</span>
+                                <span class="text-sm font-semibold gradient-text">Low (28%)</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 28%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-400">Infrastructure Vulnerability</span>
+                                <span class="text-sm font-semibold gradient-text">Medium (54%)</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 54%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <span class="text-xl font-space font-bold gradient-text">Urban Seasonal Intelligence System</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                © 2026 USIS. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
